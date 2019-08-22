@@ -25,84 +25,12 @@ public class Automata_OperadoresRelaciones {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '<') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '<' || car[cont] == '>' || car[cont] == '=' || car[cont] == '!') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
-                q1();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q1() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == '>') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
-                q2();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q2() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == 'n') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
-                q3();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q3() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
-                q4();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q4() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == '!') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
+                aceptada = true;
                 qF();
-
             } else {
 
                 aceptada = false;
@@ -110,8 +38,6 @@ public class Automata_OperadoresRelaciones {
             }
         }
     }
-
-   
 
     public void qF() {
 

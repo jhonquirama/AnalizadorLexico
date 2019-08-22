@@ -25,42 +25,9 @@ public class Automata_Y_O_N {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'Y') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'Y' || car[cont] == 'O' || car[cont] == 'N') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
-
-                q1();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q1() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == 'O') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
-                qF();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-      public void qF() {
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == 'N') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
 
@@ -71,4 +38,5 @@ public class Automata_Y_O_N {
             }
         }
     }
+
 }

@@ -7,9 +7,9 @@ package Modelo;
 
 /**
  *
- * @author juan
+ * @author alvar
  */
-public class Automata_OperadoresAsignacion {
+public class Automata_diples {
 
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
@@ -25,25 +25,9 @@ public class Automata_OperadoresAsignacion {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '+' || car[cont] == '-' || car[cont] == '*' || car[cont] == '/'
-                    || car[cont] == '%' || car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '<' || car[cont] == '>') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
-
-                qF();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void qF() {
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
 
