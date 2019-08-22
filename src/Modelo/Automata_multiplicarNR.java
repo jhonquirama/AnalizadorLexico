@@ -10,5 +10,36 @@ package Modelo;
  * @author alvar
  */
 public class Automata_multiplicarNR {
-    
+
+    int cont;
+    boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
+
+    char[] car;
+
+    public void inicio() {
+        cont = 0;
+        aceptada = false;
+    }
+
+    public void q0() {
+
+        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
+
+            if (car[cont] == 'm') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+
+                cont++;/*incrememnto mi contador*/
+
+                q1();
+
+            } else {
+
+                aceptada = false;
+
+            }
+        }
+    }
+
+    public void q1() {
+
+    }
 }
