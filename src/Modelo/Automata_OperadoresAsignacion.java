@@ -7,9 +7,9 @@ package Modelo;
 
 /**
  *
- * @author Lenovo
+ * @author juan
  */
-public class Automata_cadena {
+public class Automata_OperadoresAsignacion {
 
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
@@ -25,7 +25,7 @@ public class Automata_cadena {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'c') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '+') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -43,7 +43,7 @@ public class Automata_cadena {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '-') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -61,7 +61,7 @@ public class Automata_cadena {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'd') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '*') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -79,7 +79,7 @@ public class Automata_cadena {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '%') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -97,7 +97,25 @@ public class Automata_cadena {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'n') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '/') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+
+                cont++;/*incrememnto mi contador*/
+
+                q5();
+
+            } else {
+
+                aceptada = false;
+
+            }
+        }
+    }
+
+    public void q5() {
+
+        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
+
+            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -112,10 +130,9 @@ public class Automata_cadena {
     }
 
     public void qF() {
-
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
 
