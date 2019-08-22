@@ -22,6 +22,7 @@ public class Automata_modulo {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0F();
     }
 
     public void q0F() {

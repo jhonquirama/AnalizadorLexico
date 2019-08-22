@@ -21,6 +21,7 @@ public class Automata_si {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
     }
      public void q0() {
 

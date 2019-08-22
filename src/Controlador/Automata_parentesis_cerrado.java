@@ -23,6 +23,7 @@ public class Automata_parentesis_cerrado {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0F();
     }
 
     public void q0F() {

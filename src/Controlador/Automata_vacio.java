@@ -21,6 +21,7 @@ public class Automata_vacio {
     public void inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
+        q0();
         aceptada = false;
     }
 

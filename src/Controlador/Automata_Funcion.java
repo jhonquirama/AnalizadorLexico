@@ -18,10 +18,12 @@ public class Automata_Funcion {
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public void inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
+
     }
 
     public void q0() {

@@ -22,6 +22,7 @@ public class Automata_CapturarDato {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
     }
 
     public void q0() {
@@ -246,8 +247,9 @@ public class Automata_CapturarDato {
             if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
-
-            } else {
+                cont++;
+                qF();
+            } else if (car[cont] == 'e') {
 
                 aceptada = false;
 

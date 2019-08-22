@@ -21,6 +21,7 @@ public class Automata_entero {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
     }
     
      public void q0() {

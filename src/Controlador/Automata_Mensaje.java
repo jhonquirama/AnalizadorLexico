@@ -12,6 +12,7 @@ import Modelo.Flujo_caracteres;
  * @author Lenovo
  */
 public class Automata_Mensaje {
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
@@ -21,9 +22,10 @@ public class Automata_Mensaje {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
     }
-    
-     public void q0() {
+
+    public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -59,8 +61,7 @@ public class Automata_Mensaje {
         }
     }
 
- 
-     public void q2() {
+    public void q2() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -77,7 +78,8 @@ public class Automata_Mensaje {
             }
         }
     }
-      public void q3() {
+
+    public void q3() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -94,7 +96,8 @@ public class Automata_Mensaje {
             }
         }
     }
-       public void q4() {
+
+    public void q4() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -111,8 +114,8 @@ public class Automata_Mensaje {
             }
         }
     }
-       
-         public void q5() {
+
+    public void q5() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -129,7 +132,8 @@ public class Automata_Mensaje {
             }
         }
     }
-public void qF() {
+
+    public void qF() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -144,5 +148,4 @@ public void qF() {
             }
         }
     }
-    }
-
+}

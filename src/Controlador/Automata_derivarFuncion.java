@@ -22,6 +22,7 @@ public class Automata_derivarFuncion {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
+        q0();
     }
     public void q0() {
 
