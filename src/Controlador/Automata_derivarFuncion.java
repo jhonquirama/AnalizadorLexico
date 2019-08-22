@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.Flujo_caracteres;
+
 /**
  *
  * @author Lenovo
@@ -16,11 +18,11 @@ public class Automata_derivarFuncion {
 
     char[] car;
 
-    public void inicio() {
-        cont = 0;
+   public void inicio(Flujo_caracteres flujo) {
+        cont = flujo.getPosActual();
+        car = flujo.getCaracteres();
         aceptada = false;
     }
-
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/

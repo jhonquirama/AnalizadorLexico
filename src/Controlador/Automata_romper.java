@@ -5,22 +5,26 @@
  */
 package Controlador;
 
+import Modelo.Flujo_caracteres;
+
 /**
  *
  * @author Lenovo
  */
 public class Automata_romper {
- int cont;
+
+    int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-    public void inicio() {
-        cont = 0;
+    public void inicio(Flujo_caracteres flujo) {
+        cont = flujo.getPosActual();
+        car = flujo.getCaracteres();
         aceptada = false;
     }
-    
-     public void q0() {
+
+    public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -56,8 +60,7 @@ public class Automata_romper {
         }
     }
 
- 
-     public void q2() {
+    public void q2() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -74,7 +77,8 @@ public class Automata_romper {
             }
         }
     }
-      public void q3() {
+
+    public void q3() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -91,7 +95,8 @@ public class Automata_romper {
             }
         }
     }
-       public void q4() {
+
+    public void q4() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -108,7 +113,8 @@ public class Automata_romper {
             }
         }
     }
-public void qF() {
+
+    public void qF() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -123,5 +129,4 @@ public void qF() {
             }
         }
     }
-    }
-
+}

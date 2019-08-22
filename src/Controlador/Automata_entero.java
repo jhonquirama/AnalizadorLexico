@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.Flujo_caracteres;
+
 /**
  *
  * @author Lenovo
@@ -15,8 +17,9 @@ public class Automata_entero {
 
     char[] car;
 
-    public void inicio() {
-        cont = 0;
+    public void inicio(Flujo_caracteres flujo) {
+        cont = flujo.getPosActual();
+        car = flujo.getCaracteres();
         aceptada = false;
     }
     
