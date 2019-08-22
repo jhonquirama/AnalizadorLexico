@@ -12,7 +12,8 @@ import Modelo.Flujo_caracteres;
  * @author Lenovo
  */
 public class Automata_flotante {
-     int cont;
+
+    int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
@@ -23,7 +24,8 @@ public class Automata_flotante {
         aceptada = false;
         q0();
     }
-     public void q0() {
+
+    public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -59,8 +61,7 @@ public class Automata_flotante {
         }
     }
 
- 
-     public void q2() {
+    public void q2() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -77,7 +78,8 @@ public class Automata_flotante {
             }
         }
     }
-      public void q3() {
+
+    public void q3() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -94,7 +96,8 @@ public class Automata_flotante {
             }
         }
     }
-       public void q4() {
+
+    public void q4() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -111,8 +114,8 @@ public class Automata_flotante {
             }
         }
     }
-       
-          public void q5() {
+
+    public void q5() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -129,7 +132,8 @@ public class Automata_flotante {
             }
         }
     }
-         public void q6() {
+
+    public void q6() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -146,20 +150,21 @@ public class Automata_flotante {
             }
         }
     }
-public void qF() {
 
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
+                cont++;
+                qF();
 
-            } else {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
+                cont--;
 
             }
         }
     }
-    }
-
+}

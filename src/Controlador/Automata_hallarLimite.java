@@ -18,7 +18,7 @@ public class Automata_hallarLimite {
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public void inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
@@ -222,25 +222,21 @@ public class Automata_hallarLimite {
             }
         }
     }
-    
-     public void qF() {
 
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
+                cont++;
+                qF();
 
-            } else {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
+                cont--;
 
             }
         }
     }
-    }
-
-  
-
-   
-
+}

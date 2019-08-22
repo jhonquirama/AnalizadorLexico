@@ -292,17 +292,18 @@ public class Automata_resolverVectores {
         }
     }
 
-    public void qF() {
-
+      public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 's') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
+                cont++;
+                qF();
 
-            } else {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
+                cont--;
 
             }
         }

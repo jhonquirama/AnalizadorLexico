@@ -140,10 +140,12 @@ public class Automata_Funcion {
             if (car[cont] == 'n') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
+                cont++;
+                qF();
 
-            } else {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
+                cont--;
 
             }
         }

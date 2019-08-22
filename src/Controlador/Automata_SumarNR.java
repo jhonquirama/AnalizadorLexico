@@ -12,13 +12,13 @@ import Modelo.Flujo_caracteres;
  * @author Lenovo
  */
 public class Automata_SumarNR {
-   
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public void inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
@@ -115,8 +115,6 @@ public class Automata_SumarNR {
         }
     }
 
-   
-
     public void q5() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -134,19 +132,21 @@ public class Automata_SumarNR {
             }
         }
     }
-public void qF() {
 
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'R') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
+                cont++;
+                qF();
 
-            } else {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
+                cont--;
 
             }
         }
     }
-    }
+}
