@@ -34,11 +34,15 @@ public class Automata_dividir {
                 cont++;/*incrememnto mi contador*/
 
                 aceptada = true;
+                q0F();
+
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+
+                aceptada = true;
+                cont--;
 
             } else {
-
                 aceptada = false;
-
             }
         }
     }
