@@ -249,10 +249,9 @@ public class Automata_CapturarDato {
                 aceptada = true;
                 cont++;
                 qF();
-            } else if (car[cont] == 'e') {
-
+            } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 aceptada = false;
-
+                cont--;
             }
         }
     }
