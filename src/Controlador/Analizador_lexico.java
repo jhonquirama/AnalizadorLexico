@@ -24,13 +24,176 @@ public class Analizador_lexico {
         flujo = flu;
 
         do {
+            automataVacio();
             automataFuncion();
+            automataDividirNR();
+            automataEntero();
             automataBoo();
             automataMesaje();
             automataSumarNR();
+            automataFlotante();
+            automataHallarLimite();
+            automataIntegrarFuncion();
+            automataMultiplicarNR();
             automataCadena();
+            automataRestarNR();
+            automataMain();
+            automataResolverVectores();
+            automataRetornar();
+            automataNada();
+            automataRomper();
+            automataCase();
             automataCapturarDato();
+            automataContrario();
+            automataDecimal();
+            automataContinuar();
+            automataDerivarFuncion();
+            automataDefecto();
         } while (flujo.getPosActual() < flujo.getCaracteres().length);
+    }
+
+    public void automataDerivarFuncion() {
+        Automata_derivarFuncion atf = new Automata_derivarFuncion();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataDefecto() {
+        Automata_defecto atf = new Automata_defecto();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataDecimal() {
+        Automata_decimal atf = new Automata_decimal();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataContrario() {
+        Automata_contrario atf = new Automata_contrario();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataContinuar() {
+        Automata_continuar atf = new Automata_continuar();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataCase() {
+        Automata_case atf = new Automata_case();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataRomper() {
+        Automata_romper atf = new Automata_romper();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataRetornar() {
+        Automata_retornar atf = new Automata_retornar();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataRestarNR() {
+        Automata_restarNR atf = new Automata_restarNR();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataResolverVectores() {
+        Automata_resolverVectores atf = new Automata_resolverVectores();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataNada() {
+        Automata_nada atf = new Automata_nada();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataMultiplicarNR() {
+        Automata_multiplicarNR atf = new Automata_multiplicarNR();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataMain() {
+        Automata_main atf = new Automata_main();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataIntegrarFuncion() {
+        Automata_integrarFuncion atf = new Automata_integrarFuncion();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataHallarLimite() {
+        Automata_hallarLimite atf = new Automata_hallarLimite();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataFlotante() {
+        Automata_flotante atf = new Automata_flotante();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataEntero() {
+        Automata_entero atf = new Automata_entero();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataDividirNR() {
+        Automata_dividirNR atf = new Automata_dividirNR();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
     }
 
     public void automataCadena() {
@@ -75,6 +238,14 @@ public class Analizador_lexico {
 
     public void automataCapturarDato() {
         Automata_CapturarDato atf = new Automata_CapturarDato();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataVacio() {
+        Automata_vacio atf = new Automata_vacio();
         lexe = atf.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);
