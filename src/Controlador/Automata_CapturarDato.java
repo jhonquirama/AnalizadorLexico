@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -18,11 +19,19 @@ public class Automata_CapturarDato {
 
     char[] car;
 
-    public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+
+            return new Lexema("capturarDato", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -155,7 +164,7 @@ public class Automata_CapturarDato {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'r') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -173,7 +182,7 @@ public class Automata_CapturarDato {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'r') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'D') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -191,7 +200,7 @@ public class Automata_CapturarDato {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'd') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -206,24 +215,6 @@ public class Automata_CapturarDato {
     }
 
     public void q10() {
-
-        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
-
-            if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
-
-                q11();
-
-            } else {
-
-                aceptada = false;
-
-            }
-        }
-    }
-
-    public void q11() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -242,6 +233,7 @@ public class Automata_CapturarDato {
     }
 
     public void qF() {
+
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -254,5 +246,6 @@ public class Automata_CapturarDato {
                 cont--;
             }
         }
+
     }
 }

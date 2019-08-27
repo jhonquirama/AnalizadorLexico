@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.Analizador_lexico;
+import Modelo.Flujo_caracteres;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -62,6 +64,11 @@ public class FrmAnalizar extends javax.swing.JFrame {
         });
 
         jButton2.setText("Anlizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jtbLexemas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,6 +159,22 @@ public class FrmAnalizar extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        char[] caracteres;
+        caracteres = cadena.toCharArray();
+        Flujo_caracteres fc = new Flujo_caracteres(0, caracteres);
+
+        Analizador_lexico analexi = new Analizador_lexico();
+
+        analexi.analizar(fc);
+
+        for (int i = 0; i < analexi.getListaLexema().size(); i++) {
+            System.out.println("Token: " + analexi.getListaLexema().get(i).getToken() 
+                    + "\nTipo: " + analexi.getListaLexema().get(i).getTipoLexema());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
