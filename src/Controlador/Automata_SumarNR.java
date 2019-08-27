@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -18,11 +19,19 @@ public class Automata_SumarNR {
 
     char[] car;
 
-    public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+
+            return new Lexema("SumarNR", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -146,6 +155,9 @@ public class Automata_SumarNR {
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

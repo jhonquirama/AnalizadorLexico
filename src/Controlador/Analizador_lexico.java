@@ -22,15 +22,33 @@ public class Analizador_lexico {
 
     public void analizar(Flujo_caracteres flu) {
         flujo = flu;
+
+        do {
+            automataFuncion();
+            automataMesaje();
+            automataCapturarDato();
+        } while (flujo.getPosActual() < flujo.getCaracteres().length);
+    }
+
+    public void automataFuncion() {
         Automata_Funcion atf = new Automata_Funcion();
         lexe = atf.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);
         }
-        System.out.println(flujo.getPosActual());
-        Automata_CapturarDato atcd = new Automata_CapturarDato();
-        lexe = atcd.inicio(flujo);
+    }
 
+    public void automataMesaje() {
+        Automata_Mensaje atf = new Automata_Mensaje();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataCapturarDato() {
+        Automata_CapturarDato atf = new Automata_CapturarDato();
+        lexe = atf.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);
         }

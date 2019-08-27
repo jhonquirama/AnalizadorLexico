@@ -14,6 +14,7 @@ import Modelo.Lexema;
  */
 public class Automata_CapturarDato {
 
+    int posInicial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
@@ -21,6 +22,8 @@ public class Automata_CapturarDato {
 
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
+
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
@@ -45,6 +48,7 @@ public class Automata_CapturarDato {
                 q1();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -63,6 +67,7 @@ public class Automata_CapturarDato {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -81,6 +86,7 @@ public class Automata_CapturarDato {
                 q3();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -99,6 +105,7 @@ public class Automata_CapturarDato {
                 q4();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -117,6 +124,7 @@ public class Automata_CapturarDato {
                 q5();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -135,6 +143,7 @@ public class Automata_CapturarDato {
                 q6();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -153,6 +162,7 @@ public class Automata_CapturarDato {
                 q7();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -171,6 +181,7 @@ public class Automata_CapturarDato {
                 q8();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -189,6 +200,7 @@ public class Automata_CapturarDato {
                 q9();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -207,6 +219,7 @@ public class Automata_CapturarDato {
                 q10();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -225,6 +238,7 @@ public class Automata_CapturarDato {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -242,8 +256,13 @@ public class Automata_CapturarDato {
                 cont++;
                 qF();
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
 

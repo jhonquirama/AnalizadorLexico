@@ -15,11 +15,13 @@ import Modelo.Lexema;
 public class Automata_Funcion {
 
     int cont;
+    int posInicial;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
     public Lexema inicio(Flujo_caracteres flujo) {
+        posInicial = flujo.getPosActual();
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
@@ -45,7 +47,7 @@ public class Automata_Funcion {
                 q1();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -63,7 +65,7 @@ public class Automata_Funcion {
                 q2();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -81,7 +83,7 @@ public class Automata_Funcion {
                 q3();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -99,7 +101,7 @@ public class Automata_Funcion {
                 q4();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -117,7 +119,7 @@ public class Automata_Funcion {
                 q5();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -135,7 +137,7 @@ public class Automata_Funcion {
                 qF();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -152,6 +154,7 @@ public class Automata_Funcion {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
                 cont--;
 

@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -13,16 +14,24 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_Mensaje {
 
+    int posInicial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-    public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+            return new Lexema("mensaje", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -36,7 +45,7 @@ public class Automata_Mensaje {
                 q1();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -54,7 +63,7 @@ public class Automata_Mensaje {
                 q2();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -72,7 +81,7 @@ public class Automata_Mensaje {
                 q3();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -90,7 +99,7 @@ public class Automata_Mensaje {
                 q4();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -108,7 +117,7 @@ public class Automata_Mensaje {
                 q5();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -126,14 +135,14 @@ public class Automata_Mensaje {
                 qF();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
         }
     }
 
-     public void qF() {
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -142,8 +151,12 @@ public class Automata_Mensaje {
                 cont++;
                 qF();
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
                 cont--;
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }
