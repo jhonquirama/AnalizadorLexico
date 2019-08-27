@@ -6,24 +6,35 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
  * @author Lenovo
  */
 public class Automata_defecto {
- int cont;
+
+    int posInicial;
+
+    int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
+        posInicial = flujo.getPosActual();
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {
+            return new Lexema("defecto", "Palabra Reservada");
+        } else {
+            return null;
+        }
     }
-     public void q0() {
+
+    public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -34,6 +45,7 @@ public class Automata_defecto {
                 q1();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -52,6 +64,7 @@ public class Automata_defecto {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -59,8 +72,7 @@ public class Automata_defecto {
         }
     }
 
- 
-     public void q2() {
+    public void q2() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -71,13 +83,15 @@ public class Automata_defecto {
                 q3();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-      public void q3() {
+
+    public void q3() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -88,13 +102,15 @@ public class Automata_defecto {
                 q4();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-       public void q4() {
+
+    public void q4() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -105,14 +121,15 @@ public class Automata_defecto {
                 q5();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-       
-         public void q5() {
+
+    public void q5() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
@@ -123,13 +140,15 @@ public class Automata_defecto {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-  public void qF() {
+
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -139,11 +158,15 @@ public class Automata_defecto {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
+            } else {
+                cont++;
+                aceptada = true;
             }
         }
     }
-    }
-
+}

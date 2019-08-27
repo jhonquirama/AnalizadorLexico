@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -13,16 +14,25 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_cadena {
 
+    int posInicial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
+        posInicial = flujo.getPosActual();
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+
+            return new Lexema("cadena", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -36,7 +46,7 @@ public class Automata_cadena {
                 q1();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);
                 aceptada = false;
 
             }
@@ -54,6 +64,7 @@ public class Automata_cadena {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -72,6 +83,7 @@ public class Automata_cadena {
                 q3();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -90,6 +102,7 @@ public class Automata_cadena {
                 q4();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -108,6 +121,7 @@ public class Automata_cadena {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -115,7 +129,7 @@ public class Automata_cadena {
         }
     }
 
-     public void qF() {
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'a') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -125,9 +139,14 @@ public class Automata_cadena {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

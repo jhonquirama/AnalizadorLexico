@@ -25,13 +25,40 @@ public class Analizador_lexico {
 
         do {
             automataFuncion();
+            automataBoo();
             automataMesaje();
+            automataSumarNR();
+            automataCadena();
             automataCapturarDato();
         } while (flujo.getPosActual() < flujo.getCaracteres().length);
     }
 
+    public void automataCadena() {
+        Automata_cadena atf = new Automata_cadena();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataBoo() {
+        Automata_boo atf = new Automata_boo();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
     public void automataFuncion() {
         Automata_Funcion atf = new Automata_Funcion();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataSumarNR() {
+        Automata_SumarNR atf = new Automata_SumarNR();
         lexe = atf.inicio(flujo);
         if (lexe != null) {
             listaLexema.add(lexe);

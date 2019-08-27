@@ -6,24 +6,34 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
  * @author Lenovo
  */
 public class Automata_derivarFuncion {
-    
+
+    int posInicial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+
+        if (aceptada) {
+            return new Lexema("derivarFuncion", "Palabra Reservada");
+        } else {
+            return null;
+        }
     }
+
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -35,6 +45,7 @@ public class Automata_derivarFuncion {
                 q1();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -53,6 +64,7 @@ public class Automata_derivarFuncion {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -71,6 +83,7 @@ public class Automata_derivarFuncion {
                 q3();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -89,6 +102,7 @@ public class Automata_derivarFuncion {
                 q4();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -107,6 +121,7 @@ public class Automata_derivarFuncion {
                 q5();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -125,6 +140,7 @@ public class Automata_derivarFuncion {
                 q6();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -143,6 +159,7 @@ public class Automata_derivarFuncion {
                 q7();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -161,6 +178,7 @@ public class Automata_derivarFuncion {
                 q8();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -179,6 +197,7 @@ public class Automata_derivarFuncion {
                 q9();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -197,6 +216,7 @@ public class Automata_derivarFuncion {
                 q10();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -215,6 +235,7 @@ public class Automata_derivarFuncion {
                 q11();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -233,13 +254,15 @@ public class Automata_derivarFuncion {
                 q12();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-    public void q12(){
+
+    public void q12() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -249,14 +272,15 @@ public class Automata_derivarFuncion {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-    
-      public void qF() {
+
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'n') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -266,9 +290,14 @@ public class Automata_derivarFuncion {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

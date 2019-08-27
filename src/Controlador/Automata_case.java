@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -13,16 +14,27 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_case {
 
+    int posInicial;
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
+        posInicial = flujo.getPosActual();
+
         aceptada = false;
         q0();
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+
+            return new Lexema("cadena", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -36,6 +48,7 @@ public class Automata_case {
                 q1();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -54,6 +67,7 @@ public class Automata_case {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -72,6 +86,7 @@ public class Automata_case {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -79,7 +94,7 @@ public class Automata_case {
         }
     }
 
-     public void qF() {
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -89,9 +104,14 @@ public class Automata_case {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

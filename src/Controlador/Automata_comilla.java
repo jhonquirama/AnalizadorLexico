@@ -24,6 +24,7 @@ public class Automata_comilla {
         aceptada = false;
         q0();
     }
+
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -32,11 +33,28 @@ public class Automata_comilla {
 
                 cont++;/*incrememnto mi contador*/
 
-                aceptada = true;
+                qF();
 
             } else {
 
                 aceptada = false;
+
+            }
+        }
+    }
+
+    public void qF() {
+        if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
+
+            if (car[cont] == '\'') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+
+                cont++;
+                aceptada = true;
+
+            } else {
+                cont++;/*incrememnto mi contador*/
+
+                qF();
 
             }
         }
