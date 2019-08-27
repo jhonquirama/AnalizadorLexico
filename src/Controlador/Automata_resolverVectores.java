@@ -6,23 +6,32 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
  * @author Lenovo
  */
 public class Automata_resolverVectores {
-    
+
+    int posInicial;
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+            return new Lexema("resolverVectores", "Palabra reservada");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -36,6 +45,7 @@ public class Automata_resolverVectores {
                 q1();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -54,6 +64,7 @@ public class Automata_resolverVectores {
                 q2();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -72,6 +83,7 @@ public class Automata_resolverVectores {
                 q3();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -90,6 +102,7 @@ public class Automata_resolverVectores {
                 q4();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -108,6 +121,7 @@ public class Automata_resolverVectores {
                 q5();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -126,6 +140,7 @@ public class Automata_resolverVectores {
                 q6();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -144,6 +159,7 @@ public class Automata_resolverVectores {
                 q7();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -162,6 +178,7 @@ public class Automata_resolverVectores {
                 q8();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -180,6 +197,7 @@ public class Automata_resolverVectores {
                 q9();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -198,6 +216,7 @@ public class Automata_resolverVectores {
                 q10();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -216,6 +235,7 @@ public class Automata_resolverVectores {
                 q11();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -234,13 +254,15 @@ public class Automata_resolverVectores {
                 q12();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-    public void q12(){
+
+    public void q12() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -250,14 +272,15 @@ public class Automata_resolverVectores {
                 q13();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
             }
         }
     }
-    
-      public void q13(){
+
+    public void q13() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 'r') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -267,6 +290,7 @@ public class Automata_resolverVectores {
                 q14();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -285,6 +309,7 @@ public class Automata_resolverVectores {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
 
@@ -292,7 +317,7 @@ public class Automata_resolverVectores {
         }
     }
 
-      public void qF() {
+    public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
             if (car[cont] == 's') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
@@ -302,9 +327,14 @@ public class Automata_resolverVectores {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
+                Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }
