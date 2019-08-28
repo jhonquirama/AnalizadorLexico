@@ -6,23 +6,33 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
  * @author alvar
  */
 public class Automata_llave_abierta {
-    
+        int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-    public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+                posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
         car = flujo.getCaracteres();
         aceptada = false;
         q0F();
+     if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("[", "separador");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     }
     public void q0F() {
 
@@ -35,6 +45,7 @@ public class Automata_llave_abierta {
                 aceptada = true;
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                 aceptada = false;
 

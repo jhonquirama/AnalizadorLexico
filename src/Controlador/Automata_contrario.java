@@ -192,7 +192,7 @@ public class Automata_contrario {
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'o' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
                 cont++;
@@ -205,9 +205,6 @@ public class Automata_contrario {
                 cont--;
 
             } else if (car[cont] == ' ') {
-                cont++;
-                aceptada = true;
-            } else {
                 cont++;
                 aceptada = true;
             }

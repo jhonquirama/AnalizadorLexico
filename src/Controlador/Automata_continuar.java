@@ -189,7 +189,7 @@ public class Automata_continuar {
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'r') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'r' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
                 cont++;
@@ -197,16 +197,15 @@ public class Automata_continuar {
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 Analizador_lexico.flujo.setPosActual(posInicial);
+
                 aceptada = false;
                 cont--;
 
             } else if (car[cont] == ' ') {
                 cont++;
                 aceptada = true;
-            } else {
-                cont++;
-                aceptada = true;
             }
         }
     }
 }
+

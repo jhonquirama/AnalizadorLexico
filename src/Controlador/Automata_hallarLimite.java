@@ -248,7 +248,7 @@ public class Automata_hallarLimite {
     public void qF() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'e') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'e' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
                 cont++;
@@ -261,9 +261,6 @@ public class Automata_hallarLimite {
                 cont--;
 
             } else if (car[cont] == ' ') {
-                cont++;
-                aceptada = true;
-            } else {
                 cont++;
                 aceptada = true;
             }

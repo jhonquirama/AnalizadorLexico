@@ -6,25 +6,33 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
  * @author alvar
  */
 public class Automata_menos_menos {
+    int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-    public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+                posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
         car = flujo.getCaracteres();
         aceptada = false;
-        q0();
+        q0(); if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("--", "Operador de aritmetico decremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     }
-
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -36,6 +44,7 @@ public class Automata_menos_menos {
                 qF();
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                 aceptada = false;
 
@@ -54,6 +63,7 @@ public class Automata_menos_menos {
                 aceptada = true;
 
             } else {
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
                 aceptada = false;
 
