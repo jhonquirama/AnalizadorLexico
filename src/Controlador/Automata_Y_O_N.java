@@ -13,6 +13,7 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_Y_O_N {
 
+    int token=0;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
