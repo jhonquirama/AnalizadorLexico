@@ -31,7 +31,7 @@ public class Automata_case {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("cadena", "Palabra reservada");
+            return new Lexema("case", "Palabra reservada");
         } else {
             return null;
         }
@@ -110,6 +110,9 @@ public class Automata_case {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

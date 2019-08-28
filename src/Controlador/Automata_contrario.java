@@ -31,7 +31,7 @@ public class Automata_contrario {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("contraria", "Palabra reservada");
+            return new Lexema("contrario", "Palabra reservada");
         } else {
             return null;
         }
@@ -205,6 +205,9 @@ public class Automata_contrario {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

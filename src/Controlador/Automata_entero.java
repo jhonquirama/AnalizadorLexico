@@ -22,6 +22,7 @@ public class Automata_entero {
 
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
@@ -145,6 +146,9 @@ public class Automata_entero {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

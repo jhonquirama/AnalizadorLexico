@@ -40,6 +40,7 @@ public class Analizador_lexico {
             automataMain();
             automataResolverVectores();
             automataRetornar();
+            automataDefecto();
             automataNada();
             automataRomper();
             automataCase();
@@ -48,8 +49,16 @@ public class Analizador_lexico {
             automataDecimal();
             automataContinuar();
             automataDerivarFuncion();
-            automataDefecto();
+            automataMasMas();
         } while (flujo.getPosActual() < flujo.getCaracteres().length);
+    }
+
+    public void automataMasMas() {
+        Automata_mas_mas atf = new Automata_mas_mas();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
     }
 
     public void automataDerivarFuncion() {

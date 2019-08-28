@@ -28,6 +28,8 @@ public class Automata_derivarFuncion {
         q0();
 
         if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+
             return new Lexema("derivarFuncion", "Palabra Reservada");
         } else {
             return null;
@@ -296,6 +298,9 @@ public class Automata_derivarFuncion {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

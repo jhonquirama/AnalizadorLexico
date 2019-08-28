@@ -28,6 +28,7 @@ public class Automata_continuar {
         q0();
 
         if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
             return new Lexema("continuar", "Palabra Reservada");
         } else {
             return null;
@@ -196,11 +197,13 @@ public class Automata_continuar {
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 Analizador_lexico.flujo.setPosActual(posInicial);
-
                 aceptada = false;
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

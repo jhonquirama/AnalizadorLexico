@@ -157,6 +157,9 @@ public class Automata_Mensaje {
             } else if (car[cont] == ' ') {
                 cont++;
                 aceptada = true;
+            } else {
+                cont++;
+                aceptada = true;
             }
         }
     }

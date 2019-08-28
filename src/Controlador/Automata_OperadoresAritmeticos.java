@@ -11,7 +11,7 @@ import Modelo.Flujo_caracteres;
  *
  * @author alvar
  */
-public class Automata_resta {
+public class Automata_OperadoresAritmeticos {
 
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
@@ -26,12 +26,9 @@ public class Automata_resta {
     }
 
     public void q0F() {
-
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '-') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
-
-                cont++;/*incrememnto mi contador*/
+            if (car[cont] == '+' || car[cont] == '-' || car[cont] == '/' || car[cont] == '*' || car[cont] == '%') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 aceptada = true;
 

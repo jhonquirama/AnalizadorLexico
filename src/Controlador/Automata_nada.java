@@ -23,6 +23,7 @@ public class Automata_nada {
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
+        posInicial = flujo.getPosActual();
         aceptada = false;
         q0();
           if (aceptada) {
@@ -106,6 +107,9 @@ public class Automata_nada {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

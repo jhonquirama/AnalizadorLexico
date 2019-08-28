@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -13,17 +14,26 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_mas_mas {
 
+    int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema/*XXXXXXXXXXXXXX*/ inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("++", "Operador de aritmetico incremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     }
+
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -35,7 +45,7 @@ public class Automata_mas_mas {
                 qF();
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 aceptada = false;
 
             }
@@ -53,7 +63,7 @@ public class Automata_mas_mas {
                 aceptada = true;
 
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 aceptada = false;
 
             }

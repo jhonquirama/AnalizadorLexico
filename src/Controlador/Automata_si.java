@@ -74,6 +74,9 @@ public class Automata_si {
             cont++;
             aceptada = true;
 
+        } else {
+            cont++;
+            aceptada = true;
         }
     }
 }

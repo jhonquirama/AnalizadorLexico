@@ -13,6 +13,7 @@ import Modelo.Lexema;
  * @author Lenovo
  */
 public class Automata_romper {
+
     int posInicial;
 
     int cont;
@@ -22,10 +23,11 @@ public class Automata_romper {
 
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
-         if (aceptada) {
+        if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
             return new Lexema("romper", "Palabra reservada");
         } else {
@@ -139,17 +141,19 @@ public class Automata_romper {
                 qF();
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
-                                Analizador_lexico.flujo.setPosActual(posInicial);
+                Analizador_lexico.flujo.setPosActual(posInicial);
 
                 aceptada = false;
                 cont--;
 
-            }} else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }
         }
+    }
 
-        
-    
 }

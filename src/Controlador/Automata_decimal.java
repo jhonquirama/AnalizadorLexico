@@ -31,7 +31,7 @@ public class Automata_decimal {
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
 
-            return new Lexema("cadena", "Palabra reservada");
+            return new Lexema("decimal", "Palabra reservada");
         } else {
             return null;
         }
@@ -167,6 +167,9 @@ public class Automata_decimal {
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

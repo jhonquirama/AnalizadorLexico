@@ -13,6 +13,7 @@ import Modelo.Lexema;
  * @author Lenovo
  */
 public class Automata_hallarLimite {
+
     int posInicial;
 
     int cont;
@@ -23,9 +24,10 @@ public class Automata_hallarLimite {
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
+        posInicial = flujo.getPosActual();
         aceptada = false;
         q0();
-        
+
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
             return new Lexema("hallarLimite", "Palabra reservada");
@@ -254,11 +256,14 @@ public class Automata_hallarLimite {
 
             } else if (Character.isLetter(car[cont]) || Character.isDigit(car[cont])) {
                 Analizador_lexico.flujo.setPosActual(posInicial);
-                
+
                 aceptada = false;
                 cont--;
 
             } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }

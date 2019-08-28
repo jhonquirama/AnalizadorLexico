@@ -23,6 +23,7 @@ public class Automata_integrarFuncion {
 
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
@@ -283,7 +284,7 @@ public class Automata_integrarFuncion {
     public void q13() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '0') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == 'o') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
@@ -313,6 +314,9 @@ public class Automata_integrarFuncion {
                 cont--;
 
             }else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
+            } else {
                 cont++;
                 aceptada = true;
             }
