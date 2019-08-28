@@ -164,6 +164,9 @@ public class Automata_defecto {
                 aceptada = false;
                 cont--;
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }
