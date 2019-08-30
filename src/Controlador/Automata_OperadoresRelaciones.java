@@ -42,6 +42,7 @@ public class Automata_OperadoresRelaciones {
             if (car[cont] == '<' || car[cont] == '>' || car[cont] == '=' || car[cont] == '!') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
+
                 qF();
             } else {
                 Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -55,16 +56,18 @@ public class Automata_OperadoresRelaciones {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '=' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;
                 aceptada = true;
                 qF();
 
-            } else if (car[cont] == ' ') {
+            } else if (car[cont] == ' ' && aceptada == true) {
                 cont++;
                 aceptada = true;
             }
         }
     }
+
+    
 }

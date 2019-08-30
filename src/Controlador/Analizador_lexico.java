@@ -19,11 +19,13 @@ public class Analizador_lexico {
     public static List<Lexema> listaLexema = new ArrayList<>();
     Lexema lexe;
     public static Flujo_caracteres flujo;
+    int posInicial = 0;
 
     public void analizar(Flujo_caracteres flu) {
         flujo = flu;
 
         do {
+            posInicial = flujo.getPosActual();
             automataVacio();
             automataFuncion();
             automataDividirNR();
@@ -54,7 +56,106 @@ public class Analizador_lexico {
             automataOperadoresAsignacion();
             automataOperadoresRelacionales();
             automataOperadoresAritmeticos();
+            automataCorchete();
+            automataLlave();
+            automataParentesis();
+            automataDelimitador();
+            automataIgual();
+            automataDiples();
+            automataOperadoresRelacionales();
+            automataOperadoresLogicos();
+            automataComilla();
+            identificadores();
         } while (flujo.getPosActual() < flujo.getCaracteres().length);
+    }
+
+    public void identificadores() {
+        String identificador = "";
+        if (flujo.getPosActual() == posInicial) {
+            for (int i = flujo.getPosActual(); i < flujo.getCaracteres().length; i++) {
+                if (Character.isLetter(flujo.getCaracteres()[i])) {
+                    identificador = identificador + flujo.getCaracteres()[i];
+                } else {
+                    i = validarEspacios(i);
+                    flujo.setPosActual(i);
+                    Lexema lex = new Lexema(identificador, "Identificador");
+                    listaLexema.add(lex);
+                    break;
+                }
+            }
+        }
+    }
+
+    public int validarEspacios(int pos) {
+        if (flujo.getCaracteres()[pos] == ' ') {
+            pos++;
+            validarEspacios(pos);
+        }
+        return pos;
+    }
+
+    public void automataComilla() {
+        Automata_comilla atf = new Automata_comilla();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataOperadoresLogicos() {
+        Automata_OperadoresLogicos atf = new Automata_OperadoresLogicos();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataDiples() {
+        Automata_diples atf = new Automata_diples();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataIgual() {
+        Automata_igual atf = new Automata_igual();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataDelimitador() {
+        Automata_Delimitador atf = new Automata_Delimitador();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataParentesis() {
+        Automata_parentesis atf = new Automata_parentesis();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataLlave() {
+        Automata_llave atf = new Automata_llave();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataCorchete() {
+        Automata_corchete atf = new Automata_corchete();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
     }
 
     public void automataMenosMenos() {

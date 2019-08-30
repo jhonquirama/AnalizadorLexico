@@ -13,42 +13,42 @@ import Modelo.Lexema;
  * @author alvar
  */
 public class Automata_igual {
-    int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    int posInicial;
 
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public Lexema inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
-                posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        posInicial = flujo.getPosActual();
 
         car = flujo.getCaracteres();
         aceptada = false;
         q0F();
-    if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return new Lexema("=", "Operador de asignación");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+            return new Lexema("=", "Operador de asignación");
+        } else {
+            return null;
+        }
     }
+
     public void q0F() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '=' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
-                cont++;/*incrememnto mi contador*/
-
+                cont++;
                 aceptada = true;
+                q0F();
 
-            } else {
-                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-                aceptada = false;
-
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

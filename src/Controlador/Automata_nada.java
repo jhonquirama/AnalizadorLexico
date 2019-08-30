@@ -13,6 +13,7 @@ import Modelo.Lexema;
  * @author alvar
  */
 public class Automata_nada {
+
     int posInicial;
 
     int cont;
@@ -26,7 +27,7 @@ public class Automata_nada {
         posInicial = flujo.getPosActual();
         aceptada = false;
         q0();
-          if (aceptada) {
+        if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
             return new Lexema("nada", "Palabra reservada");
         } else {
@@ -108,9 +109,16 @@ public class Automata_nada {
                 cont--;
 
             } else if (car[cont] == ' ') {
-                cont++;
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

@@ -12,17 +12,15 @@ import Modelo.Lexema;
  *
  * @author juan
  */
-public class Automata_Y_O_N {
+public class Automata_OperadoresLogicos {
 
     int posIncial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
-    int token;
     char[] car;
 
     public Lexema inicio(Flujo_caracteres flujo) {
-        token = 0;
         posIncial = flujo.getPosActual();
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
@@ -31,17 +29,8 @@ public class Automata_Y_O_N {
 
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            if (token == 1) {
-                return new Lexema("Y", "Operador logico");
+            return new Lexema(car[posIncial] + "", "Operador logico");
 
-            } else if (token == 2) {
-                return new Lexema("O", "Operador logico");
-
-            } else if (token == 3) {
-                return new Lexema("N", "Operador logico");
-            } else {
-                return null;
-            }
         } else {
             return null;
         }
@@ -51,27 +40,15 @@ public class Automata_Y_O_N {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == 'Y') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if ((car[cont] == '&' || car[cont] == '|' || car[cont] == '!') && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
-                token = 1;
-                cont++;/*incrememnto mi contador*/
-
+                cont++;
                 aceptada = true;
+                q0();
 
-            } else if (car[cont] == 'O') {
-                token = 2;
-                cont++;/*incrememnto mi contador*/
-
+            } else if (car[cont] == ' ') {
+                cont++;
                 aceptada = true;
-
-            } else if (car[cont] == 'N') {
-                cont++;/*incrememnto mi contador*/
-
-                token = 3;
-                aceptada = true;
-
-            } else {
-                aceptada = false;
             }
         }
     }

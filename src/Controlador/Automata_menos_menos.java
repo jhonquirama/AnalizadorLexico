@@ -69,11 +69,6 @@ public class Automata_menos_menos {
             } else if (car[cont] == ' ') {
                 cont++;
                 aceptada = true;
-            } else {
-                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-                aceptada = false;
-
             }
         }
     }

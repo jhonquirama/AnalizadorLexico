@@ -12,7 +12,7 @@ import Modelo.Lexema;
  *
  * @author alvar
  */
-public class Automata_diples {
+public class Automata_Delimitador {
 
     int posInicial;
     int cont;
@@ -21,28 +21,27 @@ public class Automata_diples {
     char[] car;
 
     public Lexema inicio(Flujo_caracteres flujo) {
-        posInicial = flujo.getPosActual();
         cont = flujo.getPosActual();
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
-        q0();
+        q0F();
         if (aceptada) {
             Analizador_lexico.flujo.setPosActual(cont);
-            return new Lexema(car[posInicial] + "", "Operador de asignación");
+            return new Lexema(car[posInicial] + "", "Delimitador");
         } else {
             return null;
         }
     }
 
-    public void q0() {
-
+    public void q0F() {
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if ((car[cont] == '<' || car[cont] == '>') && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if ((car[cont] == ';' || car[cont] == ',' || car[cont] == '.') && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;
                 aceptada = true;
-                q0();
+                q0F();
 
             } else if (car[cont] == ' ') {
                 cont++;

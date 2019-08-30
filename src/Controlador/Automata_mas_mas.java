@@ -14,24 +14,24 @@ import Modelo.Lexema;
  */
 public class Automata_mas_mas {
 
-    int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    int posInicial;
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-    public Lexema/*XXXXXXXXXXXXXX*/ inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
-        posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        posInicial = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
-        if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return new Lexema("++", "Operador aritmetico incremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-        }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+            return new Lexema("++", "Operador aritmetico incremental");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -64,13 +64,16 @@ public class Automata_mas_mas {
                 qF();
 
             } else if (car[cont] == ' ') {
-                cont++;
+                validarEspacios();
                 aceptada = true;
-            } else {
-                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-                aceptada = false;
-
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }
