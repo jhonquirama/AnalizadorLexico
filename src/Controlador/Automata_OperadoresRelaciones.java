@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Flujo_caracteres;
+import Modelo.Lexema;
 
 /**
  *
@@ -13,16 +14,25 @@ import Modelo.Flujo_caracteres;
  */
 public class Automata_OperadoresRelaciones {
 
+    int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
     int cont;
     boolean aceptada;/*para guardar los caratcteres y los va ir separando*/
 
     char[] car;
 
-   public void inicio(Flujo_caracteres flujo) {
+    public Lexema inicio(Flujo_caracteres flujo) {
+        posInicial = flujo.getPosActual();
         cont = flujo.getPosActual();
         car = flujo.getCaracteres();
         aceptada = false;
         q0();
+        if (aceptada) {
+            Analizador_lexico.flujo.setPosActual(cont);
+            return new Lexema(car[posInicial] + "=", "Operador relacional");
+        } else {
+            return null;
+        }
     }
 
     public void q0() {
@@ -32,11 +42,9 @@ public class Automata_OperadoresRelaciones {
             if (car[cont] == '<' || car[cont] == '>' || car[cont] == '=' || car[cont] == '!') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
-
-                aceptada = true;
                 qF();
             } else {
-
+                Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 aceptada = false;
 
             }
@@ -49,12 +57,13 @@ public class Automata_OperadoresRelaciones {
 
             if (car[cont] == '=') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
+                cont++;
                 aceptada = true;
+                qF();
 
-            } else {
-
-                aceptada = false;
-
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             }
         }
     }

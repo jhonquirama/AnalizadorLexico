@@ -13,6 +13,7 @@ import Modelo.Lexema;
  * @author alvar
  */
 public class Automata_menos_menos {
+
     int posInicial;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     int cont;
@@ -22,17 +23,19 @@ public class Automata_menos_menos {
 
     public Lexema inicio(Flujo_caracteres flujo) {
         cont = flujo.getPosActual();
-                posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        posInicial = flujo.getPosActual();//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
         car = flujo.getCaracteres();
         aceptada = false;
-        q0(); if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        q0();
+        if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return new Lexema("--", "Operador de aritmetico decremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("--", "Operador aritmetico decremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     }
+
     public void q0() {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
@@ -56,12 +59,16 @@ public class Automata_menos_menos {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '-') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '-' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
                 aceptada = true;
+                qF();
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             } else {
                 Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 

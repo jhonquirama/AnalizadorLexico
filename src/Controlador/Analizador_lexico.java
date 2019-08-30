@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Analizador_lexico {
 
-    List<Lexema> listaLexema = new ArrayList<>();
+    public static List<Lexema> listaLexema = new ArrayList<>();
     Lexema lexe;
     public static Flujo_caracteres flujo;
 
@@ -50,7 +50,43 @@ public class Analizador_lexico {
             automataContinuar();
             automataDerivarFuncion();
             automataMasMas();
+            automataMenosMenos();
+            automataOperadoresAsignacion();
+            automataOperadoresRelacionales();
+            automataOperadoresAritmeticos();
         } while (flujo.getPosActual() < flujo.getCaracteres().length);
+    }
+
+    public void automataMenosMenos() {
+        Automata_menos_menos atf = new Automata_menos_menos();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataOperadoresAritmeticos() {
+        Automata_OperadoresAritmeticos atf = new Automata_OperadoresAritmeticos();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataOperadoresRelacionales() {
+        Automata_OperadoresRelaciones atf = new Automata_OperadoresRelaciones();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
+    }
+
+    public void automataOperadoresAsignacion() {
+        Automata_OperadoresAsignacion atf = new Automata_OperadoresAsignacion();
+        lexe = atf.inicio(flujo);
+        if (lexe != null) {
+            listaLexema.add(lexe);
+        }
     }
 
     public void automataMasMas() {

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -104,9 +105,11 @@ public class FrmAnalizar extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 235, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,10 +173,7 @@ public class FrmAnalizar extends javax.swing.JFrame {
 
         analexi.analizar(fc);
 
-        for (int i = 0; i < analexi.getListaLexema().size(); i++) {
-            System.out.println("Token: " + analexi.getListaLexema().get(i).getToken() 
-                    + "\nTipo: " + analexi.getListaLexema().get(i).getTipoLexema());
-        }
+        listar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -228,4 +228,19 @@ public class FrmAnalizar extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable jtbLexemas;
     // End of variables declaration//GEN-END:variables
+      public void listar() {
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Token");
+        modelo.addColumn("Tipo Lexema");
+        for (int i = 0; i < Analizador_lexico.listaLexema.size(); i++) {
+            modelo.addRow(new Object[]{
+                Analizador_lexico.listaLexema.get(i).getToken(),
+                Analizador_lexico.listaLexema.get(i).getTipoLexema()
+            });
+        }
+
+        jtbLexemas.setModel(modelo);
+    }
+
 }

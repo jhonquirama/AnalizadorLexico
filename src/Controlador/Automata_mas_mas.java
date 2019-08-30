@@ -28,7 +28,7 @@ public class Automata_mas_mas {
         q0();
         if (aceptada) {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             Analizador_lexico.flujo.setPosActual(cont);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-            return new Lexema("++", "Operador de aritmetico incremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            return new Lexema("++", "Operador aritmetico incremental");//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         } else {//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
             return null;//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         }//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -56,12 +56,16 @@ public class Automata_mas_mas {
 
         if (cont < car.length) {/*cuantos espacios tiene mi arreglo*/
 
-            if (car[cont] == '+') {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
+            if (car[cont] == '+' && aceptada == false) {/*el arreglo car en el contador 0 lo vamos a comparar si es = a*/
 
                 cont++;/*incrememnto mi contador*/
 
                 aceptada = true;
+                qF();
 
+            } else if (car[cont] == ' ') {
+                cont++;
+                aceptada = true;
             } else {
                 Analizador_lexico.flujo.setPosActual(posInicial);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                 aceptada = false;
