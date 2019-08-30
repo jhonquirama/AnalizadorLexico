@@ -86,11 +86,18 @@ public class Automata_boo {
 
                 aceptada = false;
                 cont--;
-
+   
             } else if (car[cont] == ' ') {
-                cont++;
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

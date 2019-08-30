@@ -144,10 +144,17 @@ public class Automata_cadena {
                 aceptada = false;
                 cont--;
 
-            } else if (car[cont] == ' ') {
-                cont++;
+              } else if (car[cont] == ' ') {
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

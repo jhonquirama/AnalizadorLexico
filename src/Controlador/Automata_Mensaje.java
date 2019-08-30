@@ -157,10 +157,18 @@ public class Automata_Mensaje {
                 aceptada = false;
                 cont--;
 
-            } else if (car[cont] == ' ') {
-                cont++;
+              } else if (car[cont] == ' ') {
+                validarEspacios();
                 aceptada = true;
             }
         }
     }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        }
+    }
 }
+

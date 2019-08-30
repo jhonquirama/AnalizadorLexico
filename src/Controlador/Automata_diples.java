@@ -45,9 +45,16 @@ public class Automata_diples {
                 q0();
 
             } else if (car[cont] == ' ') {
-                cont++;
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

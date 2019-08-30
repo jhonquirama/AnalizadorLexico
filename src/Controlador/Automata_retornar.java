@@ -185,9 +185,16 @@ public class Automata_retornar {
                 cont--;
 
             } else if (car[cont] == ' ') {
-                cont++;
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

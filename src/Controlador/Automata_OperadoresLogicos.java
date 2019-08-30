@@ -46,11 +46,17 @@ public class Automata_OperadoresLogicos {
                 aceptada = true;
                 q0();
 
-            } else if (car[cont] == ' ') {
-                cont++;
+        } else if (car[cont] == ' ') {
+                validarEspacios();
                 aceptada = true;
             }
         }
     }
 
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
+        }
+    }
 }

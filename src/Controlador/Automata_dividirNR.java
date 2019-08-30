@@ -204,10 +204,17 @@ public class Automata_dividirNR {
                 aceptada = false;
                 cont--;
 
-            } else if (car[cont] == ' ') {
-                cont++;
+              } else if (car[cont] == ' ') {
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }

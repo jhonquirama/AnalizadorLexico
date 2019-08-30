@@ -66,10 +66,17 @@ public class Automata_menos_menos {
                 aceptada = true;
                 qF();
 
-            } else if (car[cont] == ' ') {
-                cont++;
+              } else if (car[cont] == ' ') {
+                validarEspacios();
                 aceptada = true;
             }
+        }
+    }
+
+    public void validarEspacios() {
+        if (car[cont] == ' ') {
+            cont++;
+            validarEspacios();
         }
     }
 }
