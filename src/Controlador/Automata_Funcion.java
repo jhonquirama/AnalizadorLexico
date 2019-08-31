@@ -160,7 +160,7 @@ public class Automata_Funcion {
                 cont--;
 
               } else if (car[cont] == ' ') {
-                validarEspacios();
+                cont++;
                 aceptada = true;
             }
         }
